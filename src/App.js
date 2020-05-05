@@ -1,6 +1,7 @@
 import React from 'react';
 import TodoList from './components/TodoList';
 import TodoForm from './components/TodoForm';
+import "./App.css";
 
 
 const toDoTasks = [
@@ -38,15 +39,35 @@ addTodoItem = (event, item) => {
 
 //Create toggle
 
-toggleToDo = (event) => {
-  
+toggleTodo = (itemId) => {
+
+  this.setState({
+    toDoTasks: this.state.toDoTasks.map((item) => {
+      console.log(`item-->`, item);
+      if(itemId === item.id){
+        return {
+          ...item, 
+          completed: !item.completed
+        }
+      }
+      return item;
+    })
+  })
 }
 
+//Clear completed
+clearCompleted = e => {
+  e.preventDefault();
+
+  this.setState({
+    toDoTasks: this.state.toDoTasks.filter(item => !item.completed)
+  })
+}
 
 
   render() {
     return (
-      <div>
+      <div className="App">
         <h2>To do, or not to do, that is the question:</h2>  
           
           
@@ -57,8 +78,10 @@ toggleToDo = (event) => {
 
           <TodoList
            toDoTasks={this.state.toDoTasks}
+           toggleTodo={this.toggleTodo}
+           clearCompleted={this.clearCompleted}
+           />         
 
-           />          
       </div>
     );
   }

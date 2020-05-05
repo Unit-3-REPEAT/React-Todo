@@ -1,0 +1,18 @@
+.App {
+    background-color: salmon;
+    width:80%;
+    margin:0 auto;
+    min-height:100vh;
+}
+
+.center-mid {
+    margin:0 auto;
+    width:60%;
+       
+}
+
+.button {
+    background-color: aliceblue;
+    margin:0 auto;
+    width:60%;
+}

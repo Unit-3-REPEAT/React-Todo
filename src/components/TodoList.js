@@ -1,29 +1,26 @@
 // your components will all go in this `component` directory.
 // feel free to change this component.js into TodoList.js
-
 import React from 'react';
-import Todo from './Todo';
+import ToDo from './Todo';
+import "../App.css";
 
-const TodoList = (props) => {
-  // you will need a place to store your state in this component.
-  // design `App` to be the parent component of your application.
-  // this component is going to take care of state, and any change handlers you need to work with your state
+// import todo here
 
-//   console.log(`props inside TodoList`, {props})
- 
-    return (
-        <div>        
-        <h3>Add another unwanted task here: </h3>
-        {props.toDoTasks.map((item) => {
-            console.log(`item -->`, item)
-            return (<Todo key={item.id} item={item}/>)
-        })}
-        
+const TodoList = props => {
 
-        
-      </div>
-     
-    );
-  }
+    // console.log(`this is props inside TodoList`, props)
+    return(
+        <>
+        <div className="center-mid">This is TodoList:
+            {props.toDoTasks.map(item => 
+                // {console.log(`===>`,item.id)}
+                //pass down the props to the ToDo component
+                (<ToDo key={item.id} item={item} toggleTodo={props.toggleTodo}/>)                
+            )} 
+            <button className="clear-btn button" onClick={props.clearCompleted}>Clear</button>   
+        </div>                   
+         </>
+    )
+}
 
 export default TodoList;
